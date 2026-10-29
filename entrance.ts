@@ -63,8 +63,8 @@ export function startEntrance(onFinish: () => void): () => void {
     const skip = document.createElement("button");
     skip.className = "vc-tiannan-stage-skip vc-tiannan-skip";
     skip.type = "button";
-    skip.setAttribute("aria-label", "Bileşen açılış animasyonunu atla");
-    skip.innerHTML = "ATLA <span>ESC</span>";
+    skip.setAttribute("aria-label", "Skip component entrance animations");
+    skip.innerHTML = "SKIP <span>ESC</span>";
     document.body.append(stage, skip);
 
     function animate(plan: EntranceAnimation) {

@@ -43,7 +43,7 @@ function reveal(animateComponents = true) {
     clearTimeout(minimumTimer);
     clearTimeout(deadlineTimer);
     const status = overlay.querySelector(".vc-tiannan-status");
-    if (status) status.textContent = "Hoş geldin";
+    if (status) status.textContent = "Welcome back";
     overlay.classList.add("vc-tiannan-leaving");
     if (animateComponents) {
         stopEntrance = startEntrance(cleanUp);
@@ -68,7 +68,7 @@ function checkReady() {
 
 export default definePlugin({
     name: "TianNanStartup",
-    description: "Tian Nan temasıyla uyumlu sinematik açılış. Esc veya Atla ile geçilebilir; azaltılmış harekete uyar.",
+    description: "Cinematic startup and component entrances inspired by Tian Nan. Supports skipping and reduced motion.",
     authors: [{ name: "cemuu", id: 0n }],
     enabledByDefault: true,
     startAt: StartAt.DOMContentLoaded,
@@ -81,7 +81,7 @@ export default definePlugin({
         minimumElapsed = leaving = false;
         overlay = document.createElement("div");
         overlay.className = "vc-tiannan-intro";
-        overlay.setAttribute("aria-label", "Discord açılıyor");
+        overlay.setAttribute("aria-label", "Opening Discord");
         overlay.innerHTML = `
             <div class="vc-tiannan-scene" aria-hidden="true"></div>
             <div class="vc-tiannan-shade" aria-hidden="true"></div>
@@ -94,11 +94,11 @@ export default definePlugin({
                 <p class="vc-tiannan-eyebrow">TIAN NAN</p>
                 <h1 class="vc-tiannan-title">DISCORD</h1>
                 <div class="vc-tiannan-rule" aria-hidden="true"></div>
-                <p class="vc-tiannan-status" role="status">Arayüz hazırlanıyor</p>
+                <p class="vc-tiannan-status" role="status">Preparing your interface</p>
             </div>
             <span class="vc-tiannan-corner vc-tiannan-corner-tl" aria-hidden="true"></span>
             <span class="vc-tiannan-corner vc-tiannan-corner-br" aria-hidden="true"></span>
-            <button class="vc-tiannan-skip" type="button" aria-label="Açılış animasyonunu atla">ATLA <span>ESC</span></button>`;
+            <button class="vc-tiannan-skip" type="button" aria-label="Skip startup animation">SKIP <span>ESC</span></button>`;
         overlay.querySelector("button")!.addEventListener("click", skip);
         document.body.append(overlay);
         document.addEventListener("keydown", onKeyDown);

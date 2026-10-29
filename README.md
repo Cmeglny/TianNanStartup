@@ -1,30 +1,35 @@
 # TianNanStartup
 
-Discord'un ilk açılışına gümüş/antrasit giriş ekranı ekler. Sonra sunucu listesi, kanallar, sohbet, üyeler ve kontroller perspektif ve dalga efektleriyle sırayla gelir.
+Give Discord a cinematic silver-and-charcoal startup screen, followed by staggered perspective and wave entrances for the server rail, channels, chat, members, and controls.
 
-- Yalnızca açılışta bir kez oynar. Ctrl+R ile tam sayfa yenilemek de yeni açılış sayılır.
-- Normalde toplam yaklaşık 9 saniye sürer. Esc veya ATLA ile geçilebilir.
-- Uygulamaya tıklamak ya da kanal değiştirmek bileşen sahnesini sonlandırır.
-- Sistem azaltılmış hareket tercihine uyar.
-- Tema kurulumu gerektirmez; ejderha arka planı için aşağıdaki GIF adımı gerekir.
+## Features
 
-### GIF arka planı
+- Plays once per renderer startup. A full reload with **Ctrl+R** also counts as a new startup.
+- Usually takes about nine seconds in total. Press **Esc** or click **SKIP** to skip it.
+- Clicking inside the app or switching channels ends the component entrance scene.
+- Respects the system's **reduced motion** preference.
+- Works without a theme. Add a GIF as described below to customize the background.
+- Includes all visible server icons in the entrance wave.
 
-GIF dosyası bu kaynak paketine dahil değildir. Kendi GIF'ini `tian-nan-pingpong.gif` olarak adlandırıp Windows'ta şu klasöre koy:
+## GIF background
+
+The background GIF is **not included** in this repository. Name your own GIF `tian-nan-pingpong.gif` and place it here on Windows:
 
 ```text
 %APPDATA%\Vencord\themes\assets\tian-nan-pingpong.gif
 ```
 
-`assets` klasörü yoksa oluştur. Bu klasöre Vencord → Themes → Open Themes Folder üzerinden de ulaşabilirsin. Diğer sistemlerde Vencord'un tema klasöründe aynı `assets` alt klasörünü kullan.
+Create the `assets` directory if needed. You can find your themes directory through **Vencord → Themes → Open Themes Folder**. On other systems, use the same `assets` subdirectory inside Vencord's themes directory.
 
-Eklenti `vencord:///themes/assets/tian-nan-pingpong.gif` adresini kullanır. GIF olmadan da giriş efektleri koyu arka plan üzerinde çalışır. Başka bir dosya adı veya HTTPS adresi kullanmak istersen `style.css` içindeki `.vc-tiannan-scene` arka planını değiştirip yeniden derle.
+The plugin loads `vencord:///themes/assets/tian-nan-pingpong.gif`. Without the GIF, the entrance effects still work on a dark background. To use a different filename or HTTPS URL, change the `.vc-tiannan-scene` background in `style.css` and rebuild.
 
-## Kurulum
+## Installation
 
-Bu depo, Vencord için özel bir **userplugin** içerir. Git, Node.js ve pnpm gerekir.
+This repository contains a custom Vencord **userplugin**. You need **Git, Node.js, and pnpm**.
 
-### Vencord kaynak klasörün yoksa
+### Get the Vencord source
+
+If you do not already have a Vencord source checkout:
 
 ```powershell
 git clone https://github.com/Vendicated/Vencord
@@ -32,42 +37,42 @@ cd Vencord
 pnpm install --frozen-lockfile
 ```
 
-### Eklentiyi ekle
+### Add the plugin
 
-Vencord kaynak klasöründeyken şu komutları çalıştır:
+Run these commands from your Vencord source directory:
 
 ```powershell
 git clone https://github.com/Cmeglny/TianNanStartup src/userplugins/tianNanStartup
 pnpm build
 ```
 
-Kaynak derlemesini Discord Desktop'a ilk kez kuruyorsan Discord'u sistem tepsisinden tamamen kapatıp şu komutu çalıştır:
+If this is your first time installing a source build into Discord Desktop, fully quit Discord from the system tray, then run:
 
 ```powershell
 pnpm inject
 ```
 
-Açılan Vencord Installer'da kullandığın Discord kurulumunu seçip kurulumu uygula. Discord'u yeniden aç. Ayarlar → Vencord → Plugins → **TianNanStartup** bölümünden eklentiyi açıp kapatabilirsin. Mevcut özel kaynak kurulumunda yeniden derleyip Discord'u tamamen kapatıp açmak yeterlidir.
+In the Vencord Installer, select your Discord installation and apply the patch. Reopen Discord, then find **TianNanStartup** under **Settings → Vencord → Plugins**. If your source build is already installed, rebuild it and fully restart Discord.
 
-Git kullanmadan eklemek için GitHub'da Code → Download ZIP ile indirip çıkar. `index.ts` doğrudan `Vencord/src/userplugins/tianNanStartup/index.ts` konumunda olacak şekilde eklenti klasörünü yerleştir; ardından yukarıdaki derleme adımını uygula. Vencord kaynak klasörünü koru.
+To install without Git, choose **Code → Download ZIP** on GitHub and extract it. Place the plugin directory so its entry point is exactly `Vencord/src/userplugins/tianNanStartup/index.ts`, then follow the build step above. Keep your Vencord source directory in place.
 
-Resmî rehberler: [Vencord'u kaynaktan kurma](https://docs.vencord.dev/installing/) · [Özel eklenti ekleme](https://docs.vencord.dev/installing/custom-plugins/)
+Official guides: [Installing Vencord from source](https://docs.vencord.dev/installing/) · [Installing custom plugins](https://docs.vencord.dev/installing/custom-plugins/)
 
-## Güncelleme
+## Updating
 
-Git ile kurduysan Vencord kaynak klasöründen:
+If you installed the plugin with Git, run these commands from your Vencord source directory:
 
 ```powershell
 git -C src/userplugins/tianNanStartup pull --ff-only
 pnpm build
 ```
 
-Ardından Discord'u tamamen kapatıp aç. ZIP ile kurduysan kaynak dosyalarını yeni sürümle değiştirip yeniden derle.
+Fully restart Discord afterward. For ZIP installations, replace the plugin source files with the new version and rebuild.
 
-## Uyumluluk
+## Compatibility
 
-Kaynaklar Vencord 1.15.14 / `644434941b515a2626a2161e219653cb36e723e7` ile kontrol edildi. Discord'un bileşen yapısı veya Vencord API'leri değişirse uyarlama gerekebilir.
+The sources were checked with **Vencord 1.15.14**, commit `644434941b515a2626a2161e219653cb36e723e7`. Changes to Discord's component structure or Vencord APIs may require updates.
 
-## Lisans
+## License
 
-Copyright © 2026 cemuu. **GPL-3.0-or-later**. Lisans metni [LICENSE](LICENSE) dosyasındadır. Bu eklenti bağımsız bir özel eklentidir.
+Copyright © 2026 cemuu. **GPL-3.0-or-later**. See [LICENSE](LICENSE) for the full license text. This is an independently maintained custom plugin.
